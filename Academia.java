@@ -1,9 +1,11 @@
-import java.util.Scanner;
+import java.util.List;
 
 public class Academia {
     private String nome;
     private String endereco;
     private String telefone;
+
+    List<Aluno> alunos;
 
     public Academia(String nome, String endereco, String telefone) {
         this.nome = nome;
@@ -41,35 +43,8 @@ public class Academia {
         System.out.println("Telefone: " + telefone);
     }
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Digite as informações da primeira academia:");
-        System.out.print("Nome: ");
-        String nome1 = scanner.nextLine();
-        System.out.print("Endereço: ");
-        String endereco1 = scanner.nextLine();
-        System.out.print("Telefone: ");
-        String telefone1 = scanner.nextLine();
-
-        Academia academia1 = new Academia(nome1, endereco1, telefone1);
-
-        System.out.println("\nDigite as informações da segunda academia:");
-        System.out.print("Nome: ");
-        String nome2 = scanner.nextLine();
-        System.out.print("Endereço: ");
-        String endereco2 = scanner.nextLine();
-        System.out.print("Telefone: ");
-        String telefone2 = scanner.nextLine();
-
-        Academia academia2 = new Academia(nome2, endereco2, telefone2);
-
-        System.out.println("\nDados da Academia 1:");
-        academia1.imprimirDados();
-        
-        System.out.println("\nDados da Academia 2:");
-        academia2.imprimirDados();
-
-        scanner.close();
+    public void adicionarAluno(Aluno aluno) {
     }
+
+   
 }
