@@ -58,3 +58,5 @@ public class Academia {
         }
     }
 }
+
+//só colocando pq ficou todo ferrado o commit
