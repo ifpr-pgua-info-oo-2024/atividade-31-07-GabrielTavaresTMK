@@ -1,8 +1,14 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         System.out.println("Digite as informações da primeira academia:");
         System.out.print("Nome: ");
@@ -22,46 +28,87 @@ public class Main {
         System.out.print("Telefone: ");
         String telefone2 = scanner.nextLine();
 
-
-        cadastraralunos( academia1, 3);
-
-
         Academia academia2 = new Academia(nome2, endereco2, telefone2);
+
+        System.out.println("\nCadastro de alunos na primeira academia:");
+        cadastrarAlunos(academia1, scanner, dateFormat);
+
+        System.out.println("\nCadastro de alunos na segunda academia:");
+        cadastrarAlunos(academia2, scanner, dateFormat);
 
         System.out.println("\nDados da Academia 1:");
         academia1.imprimirDados();
-        
+        academia1.imprimirAlunos();
+
         System.out.println("\nDados da Academia 2:");
         academia2.imprimirDados();
-
-        cadastraralunos( academia2, 3);
+        academia2.imprimirAlunos();
 
         scanner.close();
     }
 
+    private static void cadastrarAlunos(Academia academia, Scanner scanner, SimpleDateFormat dateFormat) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.MONTH, Calendar.DECEMBER);
+        calendar.set(Calendar.DAY_OF_MONTH, 31);
+        Date dataLimite = calendar.getTime();
 
-
-    private static void cadastraralunos( Academia academia, int quantidade) {
-          Scanner scanner = new Scanner(System.in);
-            for (int i = 0; i < quantidade; i++) {
+        for (int i = 0; i < 3; i++) {
+            try {
                 System.out.println("\nDigite as informações do aluno " + (i + 1) + ":");
                 System.out.print("Nome: ");
-                String nomeAluno = scanner.nextLine();
-                System.out.print("Graduação: ");
-                String nivelAluno = scanner.nextLine();
-                System.out.print("Nascimento: ");
-                int nascimentoAluno = Integer.parseInt(scanner.nextLine());
+                String nome = scanner.nextLine();
                 System.out.print("Gênero: ");
-                String generoAluno = scanner.nextLine();
-                System.out.print("Altura: ");
-                double alturaAluno = Double.parseDouble(scanner.nextLine());
-                System.out.print("Peso: ");
-                double pesoAluno = Double.parseDouble(scanner.nextLine());
+                String genero = scanner.nextLine();
+                
+                Date nascimento = null;
+                while (nascimento == null) {
+                    System.out.print("Data de Nascimento (dd/MM/yyyy): ");
+                    String nascimentoStr = scanner.nextLine();
+                    try {
+                        nascimento = dateFormat.parse(nascimentoStr);
+                        if (nascimento.after(dataLimite)) {
+                            System.out.println("Data de nascimento inválida.");
+                            nascimento = null;
+                        }
+                    } catch (ParseException e) {
+                        System.out.println("Data de nascimento inválida use o formato dd/MM/yyyy.");
+                    }
+                }
 
-                Aluno aluno = new Aluno(nomeAluno, nivelAluno, nascimentoAluno, generoAluno, alturaAluno, pesoAluno);
+                double altura;
+                while (true) {
+                    System.out.print("Altura: ");
+                    String alturaStr = scanner.nextLine();
+                    try {
+                        altura = Double.parseDouble(alturaStr);
+                        break;
+                    } catch (NumberFormatException e) {
+                        System.out.println("insira um número válido.");
+                    }
+                }
+
+                double peso;
+                while (true) {
+                    System.out.print("Peso: ");
+                    String pesoStr = scanner.nextLine();
+                    try {
+                        peso = Double.parseDouble(pesoStr);
+                        break; 
+                    } catch (NumberFormatException e) {
+                        System.out.println("insira um número válido.");
+                    }
+                }
+
+                System.out.print("Nível: ");
+                String nivel = scanner.nextLine();
+
+                Pessoa pessoa = new Pessoa(nome, genero, nascimento, altura, peso);
+                Aluno aluno = new Aluno(nivel, pessoa);
                 academia.adicionarAluno(aluno);
-         }
-     }
+            } catch (NumberFormatException e) {
+                System.out.println("insira números válidos.");
+            }
+        }
+    }
 }
-
-//só colocado para dar commit sem cagar tudo

@@ -1,16 +1,17 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Academia {
     private String nome;
     private String endereco;
     private String telefone;
-
-    List<Aluno> alunos;
+    private List<Aluno> alunos;
 
     public Academia(String nome, String endereco, String telefone) {
         this.nome = nome;
         this.endereco = endereco;
         this.telefone = telefone;
+        this.alunos = new ArrayList<>();
     }
 
     public String getNome() {
@@ -44,9 +45,16 @@ public class Academia {
     }
 
     public void adicionarAluno(Aluno aluno) {
+        alunos.add(aluno);
     }
 
-   
+    public void imprimirAlunos() {
+        if (alunos.isEmpty()) {
+            System.out.println("Nenhum aluno cadastrado.");
+        } else {
+            for (Aluno aluno : alunos) {
+                System.out.println(aluno);
+            }
+        }
+    }
 }
-
-//só colocado para dar commit sem cagar tudo
