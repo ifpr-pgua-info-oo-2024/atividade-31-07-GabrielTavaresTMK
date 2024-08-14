@@ -1,7 +1,5 @@
 import java.util.List;
 
-import javax.crypto.AEADBadTagException;
-
 public class Academia {
     private String nome;
     private String endereco;
