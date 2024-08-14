@@ -9,10 +9,10 @@ public class Aluno {
     private double altura;
     private double peso;
 
-    public Aluno(String nome, String nivel, int idadeAluno, String genero, double altura, double peso) {
+    public Aluno(String nome, String nivel, int nascimentoAluno, String genero, double altura, double peso) {
         this.nome = nome;
         this.nivel = nivel;
-        this.nascimento = idadeAluno;
+        this.nascimento = nascimentoAluno;
         this.genero = genero;
         this.altura = altura;
         this.peso = peso;

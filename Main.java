@@ -42,24 +42,24 @@ public class Main {
 
 
     private static void cadastraralunos( Academia academia, int quantidade) {
-        Scanner scanner = new Scanner(System.in);
-        for (int i = 0; i < quantidade; i++) {
-            System.out.println("\nDigite as informações do aluno " + (i + 1) + ":");
-            System.out.print("Nome: ");
-            String nomeAluno = scanner.nextLine();
-            System.out.print("Graduação: ");
-            String nivelAluno = scanner.nextLine();
-            System.out.print("Idade: ");
-            int idadeAluno = Integer.parseInt(scanner.nextLine());
-            System.out.print("Gênero (opcional): ");
-            String generoAluno = scanner.nextLine();
-            System.out.print("Altura: ");
-            double alturaAluno = Double.parseDouble(scanner.nextLine());
-            System.out.print("Peso: ");
-            double pesoAluno = Double.parseDouble(scanner.nextLine());
+          Scanner scanner = new Scanner(System.in);
+            for (int i = 0; i < quantidade; i++) {
+                System.out.println("\nDigite as informações do aluno " + (i + 1) + ":");
+                System.out.print("Nome: ");
+                String nomeAluno = scanner.nextLine();
+                System.out.print("Graduação: ");
+                String nivelAluno = scanner.nextLine();
+                System.out.print("Nascimento: ");
+                int nascimentoAluno = Integer.parseInt(scanner.nextLine());
+                System.out.print("Gênero: ");
+                String generoAluno = scanner.nextLine();
+                System.out.print("Altura: ");
+                double alturaAluno = Double.parseDouble(scanner.nextLine());
+                System.out.print("Peso: ");
+                double pesoAluno = Double.parseDouble(scanner.nextLine());
 
-            Aluno aluno = new Aluno(nomeAluno, nivelAluno, idadeAluno, generoAluno, alturaAluno, pesoAluno);
-            academia.adicionarAluno(aluno);
-        }
-    }
+                Aluno aluno = new Aluno(nomeAluno, nivelAluno, nascimentoAluno, generoAluno, alturaAluno, pesoAluno);
+                academia.adicionarAluno(aluno);
+         }
+     }
 }
